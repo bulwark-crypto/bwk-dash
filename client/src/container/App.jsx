@@ -1,5 +1,5 @@
 
-const fetch = require('../fetch');
+const fetch = require('../lib/fetch');
 const React = require('react');
 
 const Footer = require('../component/Footer');
@@ -29,6 +29,9 @@ class App extends React.Component {
       donationAddress: 'DONATION',
       ip: '',
       incomingData: 0.0,
+      maxFee: 0.0,
+      midFee: 0.0,
+      minFee: 0.0,
       maxMemory: 0.0,
       network: 'nonet',
       networkHashPS: 0.0,
@@ -98,7 +101,10 @@ class App extends React.Component {
                 status={ this.state.status } />
               <Donate
                 donationAddress={ this.state.donationAddress } />
-              <Fee />
+              <Fee
+                max={ this.state.maxFee }
+                mid={ this.state.midFee }
+                min={ this.state.minFee } />
             </div>
           }
         </div>

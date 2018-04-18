@@ -1,4 +1,5 @@
 
+const { breakdownBytes } = require('../lib/breakdown');
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -7,9 +8,9 @@ const Card = require('../ui/Card');
 const Bandwidth = (props) => (
   <div className="bandwidth">
     <Card title="Bandwidth Summary">
-      Sent: { props.outgoingData }<br />
-      Recv: { props.incomingData }<br />
-      Total: { props.totalData }<br />
+      Sent: { breakdownBytes(props.outgoingData) }<br />
+      Recv: { breakdownBytes(props.incomingData) }<br />
+      Total: { breakdownBytes(props.totalData) }<br />
     </Card>
   </div>
 );

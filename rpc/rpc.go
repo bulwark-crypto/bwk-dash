@@ -19,6 +19,45 @@ func (client *RPC) Call(method string, args ...interface{}) (data []byte, err er
 	return
 }
 
+// GetFees will return the max, mid, and min fees.
+func (client *RPC) GetFees() (max, mid, min float64) {
+	var data []byte
+	var err error
+	if data, err = client.node.Call("estimatefee", 1); err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	fees := new(GetFees)
+	if err = json.Unmarshal(data, &fees); err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	min = fees.Result
+
+	if data, err = client.node.Call("estimatefee", 12); err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	fees = new(GetFees)
+	if err = json.Unmarshal(data, &fees); err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	mid = fees.Result
+
+	if data, err = client.node.Call("estimatefee", 25); err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	fees = new(GetFees)
+	if err = json.Unmarshal(data, &fees); err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	max = fees.Result
+	return
+}
+
 // GetInfo will return the getinfo data as a struct.
 func (client *RPC) GetInfo() (info *GetInfo, err error) {
 	var data []byte

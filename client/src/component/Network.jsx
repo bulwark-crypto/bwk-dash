@@ -1,4 +1,5 @@
 
+const { breakdownHash } = require('../lib/breakdown');
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -8,7 +9,7 @@ const Network = (props) => (
   <div className="network">
     <Card title="Network Information">
       Block Height: { props.blocks }<br />
-      Hash Rate: { props.networkHashPS }<br />
+      Hash Rate: { breakdownHash(props.networkHashPS) }<br />
       Difficulty: { props.difficulty }<br />
     </Card>
   </div>

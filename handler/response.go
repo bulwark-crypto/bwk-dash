@@ -10,7 +10,10 @@ type InfoResponse struct {
 	DonationAddress string  `json:"donationAddress"`
 	IP              string  `json:"ip"`
 	IncomingData    float64 `json:"incomingData"`
+	MaxFee          float64 `json:"maxFee"`
 	MaxMemory       float64 `json:"maxMemory"`
+	MidFee          float64 `json:"midFee"`
+	MinFee          float64 `json:"minFee"`
 	Network         string  `json:"network"`
 	NetworkHashPS   float64 `json:"networkHashPS"`
 	OutgoingData    float64 `json:"outgoingData"`

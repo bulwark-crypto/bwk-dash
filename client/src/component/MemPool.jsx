@@ -9,7 +9,7 @@ const MemPool = (props) => (
     <Card title="MemPool Information">
       Transactions: { props.transactions }<br />
       Size: { props.size }<br />
-      TODO bar chart!
+      TODO find way to get total RAM - minus mempool bytes!
     </Card>
   </div>
 );

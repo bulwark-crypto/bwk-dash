@@ -48,6 +48,9 @@ func GetNodeInfo(c *gin.Context) {
 	res.IncomingData, res.OutgoingData = node.GetNetTotals()
 	res.TotalData = res.IncomingData + res.OutgoingData
 
+	// Get the max, mid, and min fees.
+	res.MaxFee, res.MidFee, res.MinFee = node.GetFees()
+
 	// Get memory information for the node.
 	res.UsedMemory = node.GetUsedMemory()
 

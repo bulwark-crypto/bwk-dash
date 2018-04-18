@@ -1,5 +1,11 @@
 package rpc
 
+type GetFees struct {
+	Error  string  `json:"error"`
+	ID     int     `json:"id"`
+	Result float64 `json:"result"`
+}
+
 type GetInfo struct {
 	Error  string `json:"error"`
 	ID     int    `json:"id"`
