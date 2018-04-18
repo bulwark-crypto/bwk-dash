@@ -21,7 +21,6 @@ class QR extends React.Component {
   };
 
   drawQRCode = () => {
-    console.log(this.props.code);
     QRCode.toCanvas(
       document.getElementById('donate-qr'),
       this.props.code,

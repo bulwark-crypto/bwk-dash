@@ -87,7 +87,10 @@ class App extends React.Component {
                 blocks={ this.state.blocks }
                 difficulty={ this.state.difficulty }
                 networkHashPS={ this.state.networkHashPS } />
-              <BandwidthChart />
+              <BandwidthChart
+                incomingData={ this.state.incomingData }
+                outgoingData={ this.state.outgoingData }
+                totalData={ this.state.totalData } />
             <div className="row">
             </div>
               <Status
