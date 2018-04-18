@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -15,11 +16,12 @@ import (
 
 func main() {
 	r := gin.Default()
+	webdir := os.Getenv("DASH_WEBSITE")
 
 	// Serve static page.
-	r.StaticFS("/asset", http.Dir("./client/dist"))
+	r.StaticFS("/asset", http.Dir(webdir))
 	r.GET("/", func(c *gin.Context) {
-		c.File("./client/dist/index.html")
+		c.File(webdir + "index.html")
 	})
 
 	// Setup CORS.
@@ -47,5 +49,5 @@ func main() {
 		api.GET("/info", handler.GetNodeInfo)
 	}
 
-	r.Run()
+	r.Run(":" + os.Getenv("DASH_PORT"))
 }
