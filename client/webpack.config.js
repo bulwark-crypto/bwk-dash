@@ -1,4 +1,5 @@
 
+require('dotenv').config({ path: '../.env' });
 const htmlPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
@@ -35,6 +36,11 @@ module.exports = {
     publicPath: '/'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'API_PORT': process.env.DASH_PORT
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new htmlPlugin({
       filename: 'index.html',
       hash: true,
@@ -42,9 +48,7 @@ module.exports = {
       template: './src/template.html',
       title: 'Bulwark Dashboard',
       xhtml: true
-    }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ],
   resolve: {
     extensions: ['.js', '.jsx']

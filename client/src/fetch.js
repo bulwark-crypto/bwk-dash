@@ -13,7 +13,8 @@ const getInfo = () => {
     },
     method: 'GET'
   };
-  return fetch('http://localhost:8080/api/info', options)
+
+  return fetch(`http://localhost:${ API_PORT }/api/info`, options)
     .then(res => res.json());
 };
 

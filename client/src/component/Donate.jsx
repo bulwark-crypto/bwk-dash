@@ -1,25 +1,13 @@
 
 const PropTypes = require('prop-types');
-const QRCode = require('qrcode');
 const React = require('react');
 
 const Card = require('../ui/Card');
+const QR = require('../ui/QR');
 
 class Donate extends React.Component {
   static propTypes = {
     donationAddress: PropTypes.string.isRequired
-  };
-
-  constructor(props) {
-    super(props);
-    this.qrcode = null;
-  };
-
-  componentDidMount() {
-    this.qrcode = new QRCode(
-      document.getElementById('donate-qr'),
-      this.props.donationAddress
-    );
   };
 
   render() {
@@ -27,7 +15,7 @@ class Donate extends React.Component {
       <div className="donate">
         <Card title="Donate Address">
           Donate QR:<br />
-          <div id="donate-qr" />
+          <QR code={ this.props.donationAddress } />
         </Card>
       </div>
     );
