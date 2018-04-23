@@ -78,6 +78,7 @@ class App extends React.Component {
                 connections={ this.state.connections }
                 network={ this.state.network } />
               <MemPool
+                max={ this.state.maxMemory }
                 size={ this.state.usedMemory }
                 transactions={ this.state.transactions } />
             <div className="row">

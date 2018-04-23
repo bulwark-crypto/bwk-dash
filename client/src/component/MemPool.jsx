@@ -1,4 +1,5 @@
 
+const { breakdownBytes } = require('../lib/breakdown');
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -8,8 +9,8 @@ const MemPool = (props) => (
   <div className="mempool">
     <Card title="MemPool Information">
       Transactions: { props.transactions }<br />
-      Size: { props.size }<br />
-      TODO find way to get total RAM - minus mempool bytes!
+      Size: { breakdownBytes(props.size) }<br />
+      RAM Size: { breakdownBytes(props.max) }
     </Card>
   </div>
 );

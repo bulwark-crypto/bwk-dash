@@ -2,6 +2,7 @@ package handler
 
 import (
 	"github.com/dustinengle/bwk-dash/rpc"
+	"github.com/dustinengle/bwk-dash/sys"
 	"github.com/gin-gonic/gin"
 )
 
@@ -27,7 +28,7 @@ func GetNodeInfo(c *gin.Context) {
 	res.Difficulty = info.Result.Difficulty
 	res.DonationAddress = c.MustGet("donation").(string)
 	res.IP = c.MustGet("ip").(string)
-	res.MaxMemory = 0 // TODO: get system memory for mempool bar.
+	res.MaxMemory = sys.GetMemorySize()
 	res.NetworkHashPS = node.GetNetworkHashPS()
 	res.Protocol = info.Result.Protocol
 	res.Rank = 0 // TODO: get masternode rank if masternode.

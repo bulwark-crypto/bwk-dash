@@ -45,6 +45,12 @@
   version = "v0.0.3"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/pbnjay/memory"
+  packages = ["."]
+  revision = "b5111eaaafea7fbab4755541ae9edf36e9758d28"
+
+[[projects]]
   name = "github.com/ugorji/go"
   packages = ["codec"]
   revision = "b4c50a2b199d93b13dc15e78929cfb23bfdf21ab"
@@ -71,6 +77,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "3c5496848d4a74e001e95f0d8770a24c72bad9f8f685a427ee590e516600ba2d"
+  inputs-digest = "de1079699c2c5767aa5ab38d5a5a6ba6baeb92014c18c8ec66b1fc7f54298f85"
   solver-name = "gps-cdcl"
   solver-version = 1
