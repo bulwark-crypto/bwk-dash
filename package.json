@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "carbon-components-react": "^5.47.1",
+    "carbon-icons": "^6.3.2"
+  },
+  "devDependencies": {
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0"
+  }
+}

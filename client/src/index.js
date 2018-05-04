@@ -1,11 +1,8 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
 
-require('babel-polyfill');
-const React = require('react');
-const ReactDOM = require('react-dom');
-
-const App = require('./container/App');
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('app-root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();

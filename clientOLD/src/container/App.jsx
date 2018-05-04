@@ -1,4 +1,4 @@
-
+require('carbon-components/scss/globals/scss/styles.scss');
 const fetch = require('../lib/fetch');
 const React = require('react');
 
@@ -67,45 +67,47 @@ class App extends React.Component {
             <div className="error">{ this.state.error }</div>
           }
           { !this.state.error &&
-            <div className="row">
-              <Node
-                ip={ this.state.ip }
-                protocol={ this.state.protocol }
-                subversion={ this.state.subversion }
-                version={ this.state.version } />
-              <NodeDetail
-                blocks={ this.state.blocks }
-                connections={ this.state.connections }
-                network={ this.state.network } />
-              <MemPool
-                max={ this.state.maxMemory }
-                size={ this.state.usedMemory }
-                transactions={ this.state.transactions } />
-            <div className="row">
-            </div>
-              <Bandwidth
-                incomingData={ this.state.incomingData }
-                outgoingData={ this.state.outgoingData }
-                totalData={ this.state.totalData } />
-              <Network
-                blocks={ this.state.blocks }
-                difficulty={ this.state.difficulty }
-                networkHashPS={ this.state.networkHashPS } />
-              <BandwidthChart
-                incomingData={ this.state.incomingData }
-                outgoingData={ this.state.outgoingData }
-                totalData={ this.state.totalData } />
-            <div className="row">
-            </div>
-              <Status
-                stakingStatus={ this.state.stakingStatus }
-                status={ this.state.status } />
-              <Donate
-                donationAddress={ this.state.donationAddress } />
-              <Fee
-                max={ this.state.maxFee }
-                mid={ this.state.midFee }
-                min={ this.state.minFee } />
+            <div>
+              <div className="row">
+                <Node
+                  ip={ this.state.ip }
+                  protocol={ this.state.protocol }
+                  subversion={ this.state.subversion }
+                  version={ this.state.version } />
+                <NodeDetail
+                  blocks={ this.state.blocks }
+                  connections={ this.state.connections }
+                  network={ this.state.network } />
+                <MemPool
+                  max={ this.state.maxMemory }
+                  size={ this.state.usedMemory }
+                  transactions={ this.state.transactions } />
+              </div>
+              <div className="row">
+                <Bandwidth
+                  incomingData={ this.state.incomingData }
+                  outgoingData={ this.state.outgoingData }
+                  totalData={ this.state.totalData } />
+                <Network
+                  blocks={ this.state.blocks }
+                  difficulty={ this.state.difficulty }
+                  networkHashPS={ this.state.networkHashPS } />
+                <BandwidthChart
+                  incomingData={ this.state.incomingData }
+                  outgoingData={ this.state.outgoingData }
+                  totalData={ this.state.totalData } />
+              </div>
+              <div className="row">
+                <Status
+                  stakingStatus={ this.state.stakingStatus }
+                  status={ this.state.status } />
+                <Donate
+                  donationAddress={ this.state.donationAddress } />
+                <Fee
+                  max={ this.state.maxFee }
+                  mid={ this.state.midFee }
+                  min={ this.state.minFee } />
+              </div>
             </div>
           }
         </div>
