@@ -16,7 +16,7 @@ import (
 
 func main() {
 	r := gin.Default()
-	webdir := os.Getenv("DASH_WEBSITE")
+	webdir := os.ExpandEnv(os.Getenv("DASH_WEBSITE"))
 
 	// Serve static page.
 	r.StaticFS("/static", http.Dir(webdir+"/static"))
