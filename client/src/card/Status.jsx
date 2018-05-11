@@ -5,12 +5,13 @@ const React = require('react');
 const Card = require('../ui/Card');
 
 const Status = (props) => (
-  <div className="status">
-    <Card title="Node Status">
-      Status: { props.status }<br />
-      Staking: { props.stakingStatus }<br />
-    </Card>
-  </div>
+  <Card
+    icon="power"
+    items={[
+      <div><strong>Status:</strong> { props.status }</div>,
+      <div><strong>Staking:</strong> { props.stakingStatus }</div>
+    ]}
+    title="Node Status" />
 );
 
 Status.propTypes = {

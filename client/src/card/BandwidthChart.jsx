@@ -13,11 +13,12 @@ const BandwidthChart = (props) => {
   ];
 
   return (
-    <div className="bandwidth-chart">
-      <Card title="Bandwidth Chart">
+    <Card
+      icon="data"
+      items={[
         <Graph data={ data } />
-      </Card>
-    </div>
+      ]}
+      title="Bandwidth Chart" />
   );
 };
 

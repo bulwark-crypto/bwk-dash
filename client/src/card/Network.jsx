@@ -6,13 +6,14 @@ const React = require('react');
 const Card = require('../ui/Card');
 
 const Network = (props) => (
-  <div className="network">
-    <Card title="Network Information">
-      Block Height: { props.blocks }<br />
-      Hash Rate: { breakdownHash(props.networkHashPS) }<br />
-      Difficulty: { props.difficulty }<br />
-    </Card>
-  </div>
+  <Card
+    icon="network"
+    items={[
+      <div><strong>Block Height:</strong> { props.blocks }</div>,
+      <div><strong>Hash Rate:</strong> { breakdownHash(props.networkHashPS) }</div>,
+      <div><strong>Difficulty:</strong> { props.difficulty }</div>
+    ]}
+    title="Network Information" />
 );
 
 Network.propTypes = {

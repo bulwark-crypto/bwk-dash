@@ -32,7 +32,7 @@ func GetNodeInfo(c *gin.Context) {
 	res.NetworkHashPS = node.GetNetworkHashPS()
 	res.Protocol = info.Result.Protocol
 	res.Rank = 0 // TODO: get masternode rank if masternode.
-	res.Status = "Up"
+	res.Status = "Online"
 	res.StakingStatus = info.Result.StakingStatus
 	res.Subversion = node.GetVersion()
 	res.Transactions = node.GetTransactions()

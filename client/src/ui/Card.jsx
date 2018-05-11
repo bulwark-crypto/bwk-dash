@@ -3,29 +3,31 @@
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const { ControlledCard } = require('carbon-components-react');
-const Icon = require('./Icon');
+const {
+  Card, CardContent, CardFooter, CardStatus
+} = require('carbon-components-react');
 
-const Card = (props) => (
-  <div className="cute-100 cute-6-phone cute-6-tablet cute-4-laptop">
-    <div className="card">
-      <div className="card-title">{ props.title }</div>
-      <div className="card-content">
-        { props.icon &&
-          <div className="card-content-icon">
-            <Icon name={ props.icon } />
-          </div>
-        }
-        { props.children }
-      </div>
+const UICard = (props) => {
+  return (
+    <div className="bx--col-sm-12 bx--col-md-6 bx--col-lg-4">
+      <Card>
+        <CardFooter>
+        { !!props.active && <CardStatus /> }
+        </CardFooter>
+        <CardContent
+          cardIcon={ props.icon }
+          cardInfo={ props.items }
+          cardTitle={ props.title } />
+      </Card>
     </div>
-  </div>
-);
+  );
+};
 
-Card.propTypes = {
-  children: PropTypes.node,
+UICard.propTypes = {
+  active: PropTypes.bool,
   icon: PropTypes.string,
+  items: PropTypes.array,
   title: PropTypes.string.isRequired
 };
 
-module.exports = Card;
+module.exports = UICard;

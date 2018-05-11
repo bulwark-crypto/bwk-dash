@@ -6,13 +6,14 @@ const React = require('react');
 const Card = require('../ui/Card');
 
 const Bandwidth = (props) => (
-  <div className="bandwidth">
-    <Card title="Bandwidth Summary">
-      Sent: { breakdownBytes(props.outgoingData) }<br />
-      Recv: { breakdownBytes(props.incomingData) }<br />
-      Total: { breakdownBytes(props.totalData) }<br />
-    </Card>
-  </div>
+  <Card
+    icon="crash"
+    items={[
+      <div><strong>Sent:</strong> { breakdownBytes(props.outgoingData) }</div>,
+      <div><strong>Recv:</strong> { breakdownBytes(props.incomingData) }</div>,
+      <div><strong>Total:</strong> { breakdownBytes(props.totalData) }</div>
+    ]}
+    title="Bandwidth Summary" />
 );
 
 Bandwidth.propTypes = {

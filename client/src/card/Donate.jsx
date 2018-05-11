@@ -12,12 +12,12 @@ class Donate extends React.Component {
 
   render() {
     return (
-      <div className="donate">
-        <Card title="Donate Address">
-          Donate QR:<br />
+      <Card
+        icon="user"
+        items={[
           <QR code={ this.props.donationAddress } />
-        </Card>
-      </div>
+        ]}
+        title="QR Code" />
     );
   };
 }

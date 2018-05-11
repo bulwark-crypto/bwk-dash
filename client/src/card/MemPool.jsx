@@ -6,13 +6,14 @@ const React = require('react');
 const Card = require('../ui/Card');
 
 const MemPool = (props) => (
-  <div className="mempool">
-    <Card title="MemPool Information">
-      Transactions: { props.transactions }<br />
-      Size: { breakdownBytes(props.size) }<br />
-      RAM Size: { breakdownBytes(props.max) }
-    </Card>
-  </div>
+  <Card
+    icon="block-chain"
+    items={[
+      <div><strong>Transactions:</strong> { props.transactions }</div>,
+      <div><strong>Size:</strong> { breakdownBytes(props.size) }</div>,
+      <div><strong>RAM:</strong> { breakdownBytes(props.max) }</div>
+    ]}
+    title="Memool Information" />
 );
 
 MemPool.propTypes = {

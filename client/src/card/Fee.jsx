@@ -5,13 +5,14 @@ const React = require('react');
 const Card = require('../ui/Card');
 
 const Fee = (props) => (
-  <div className="fee">
-    <Card title="Network Fee Summary">
-      Min: { props.min }<br />
-      Mid: { props.mid }<br />
-      Max: { props.max }
-    </Card>
-  </div>
+  <Card
+    icon="dollars"
+    items={[
+      <div><strong>Min:</strong> { props.min }</div>,
+      <div><strong>Mid:</strong> { props.mid }</div>,
+      <div><strong>Max:</strong> { props.max }</div>
+    ]}
+    title="Network Fee Summary" />
 );
 
 Fee.propTypes = {

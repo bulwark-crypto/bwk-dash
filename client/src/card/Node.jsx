@@ -5,14 +5,15 @@ const React = require('react');
 const Card = require('../ui/Card');
 
 const Node = (props) => (
-  <div className="node">
-    <Card title="Node Information">
-      Bulwark Node<br />
-      Subversion: { props.subversion }<br />
-      Protocol: { props.protocol }<br />
-      IP: { props.ip }<br />
-    </Card>
-  </div>
+  <Card
+    icon="infrastructure"
+    items={[
+      'Bulwark Node',
+      <div><strong>Subversion:</strong> { props.subversion }</div>,
+      <div><strong>Protocol:</strong> { props.protocol }</div>,
+      <div><strong>IP Address:</strong> { props.ip }</div>
+    ]}
+    title="Node Information" />
 );
 
 Node.propTypes = {

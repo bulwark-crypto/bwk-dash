@@ -3,8 +3,6 @@ const PropTypes = require('prop-types');
 const QRCode = require('qrcode');
 const React = require('react');
 
-const Card = require('../ui/Card');
-
 class QR extends React.Component {
   static propTypes = {
     code: PropTypes.string.isRequired
