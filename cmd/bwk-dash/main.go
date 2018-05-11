@@ -19,9 +19,9 @@ func main() {
 	webdir := os.Getenv("DASH_WEBSITE")
 
 	// Serve static page.
-	r.StaticFS("/asset", http.Dir(webdir))
+	r.StaticFS("/static", http.Dir(webdir+"/static"))
 	r.GET("/", func(c *gin.Context) {
-		c.File(webdir + "index.html")
+		c.File(webdir + "/index.html")
 	})
 
 	// Setup CORS.

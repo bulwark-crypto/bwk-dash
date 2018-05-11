@@ -13,6 +13,14 @@ class Graph extends React.Component {
     this.chart = null;
   };
 
+  componentDidMount() {
+    setTimeout(() => {
+      if (!this.chart) {
+        this.drawGraph();
+      }
+    }, 5000);
+  };
+
   componentDidUpdate(prevProps) {
     this.drawGraph();
   };
@@ -31,8 +39,8 @@ class Graph extends React.Component {
         datasets: [{
           label: 'Bytes',
           data: this.props.data,
-          backgroundColor: ['#00ff00', '#ff0000'],
-          borderColor: ['#333333', '#333333'],
+          backgroundColor: ['#5596e6', '#3d70b2'],
+          borderColor: ['#4586d6', '#2d60a2'],
           borderWidth: 1
         }]
       },
