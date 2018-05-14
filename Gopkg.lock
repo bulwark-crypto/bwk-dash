@@ -30,6 +30,15 @@
   version = "v1.0.0"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/jmoiron/sqlx"
+  packages = [
+    ".",
+    "reflectx"
+  ]
+  revision = "2aeb6a910c2b94f2d5eb53d9895d80e27264ec41"
+
+[[projects]]
   name = "github.com/joho/godotenv"
   packages = [
     ".",
@@ -83,6 +92,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "2f41a1dfad30366931078e3d006cd45015fd3689c90beb36bedf04e72ba5e4f2"
+  inputs-digest = "b181274556273c48b8fb2e0bf59d7837be96fbce04d75a0929c43736cbf2fa16"
   solver-name = "gps-cdcl"
   solver-version = 1
