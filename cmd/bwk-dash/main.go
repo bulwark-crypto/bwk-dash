@@ -10,8 +10,6 @@ import (
 
 	"github.com/dustinengle/bwk-dash/data"
 	"github.com/dustinengle/bwk-dash/handler"
-	"github.com/dustinengle/bwk-dash/rpc"
-	"github.com/dustinengle/bwk-dash/sys"
 
 	_ "github.com/joho/godotenv/autoload"
 )
@@ -50,12 +48,7 @@ func main() {
 	//  - Attach ENV variables to context
 	// 	- Get IP from API
 	// 	- Provide RPC Client
-	api.Use(
-		sys.EnvMiddleware(),
-		sys.NetMiddleware(),
-		rpc.Middleware(),
-		data.Middleware(db),
-	)
+	api.Use(data.Middleware(db))
 	{
 		api.GET("/info", handler.GetNodeInfo)
 	}
