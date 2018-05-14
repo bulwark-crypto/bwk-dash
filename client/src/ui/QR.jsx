@@ -9,11 +9,13 @@ class QR extends React.Component {
   };
 
   componentDidMount() {
-    this.drawQRCode();
+    if (!!this.props.code) {
+      this.drawQRCode();
+    }
   };
 
   componentDidUpdate(prevProps) {
-    if (prevProps.code !== this.props.code) {
+    if (!!this.props.code && prevProps.code !== this.props.code) {
       this.drawQRCode();
     }
   };
@@ -32,6 +34,10 @@ class QR extends React.Component {
   };
 
   render() {
+    if (!this.props.code) {
+      return null;
+    }
+
     return (
       <canvas id="donate-qr" />
     );
