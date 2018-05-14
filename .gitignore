@@ -15,4 +15,5 @@
 
 .vscode/
 node_modules/
+*.db
 *.log
