@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"net/http"
 	"os"
 
@@ -15,13 +14,6 @@ import (
 )
 
 func main() {
-	// Setup database connection.
-	db, err := data.NewSQL(os.ExpandEnv(os.Getenv("DASH_DB")))
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer db.Close()
-
 	// Setup gin framework.
 	r := gin.Default()
 	webdir := os.ExpandEnv(os.Getenv("DASH_WEBSITE"))
@@ -48,7 +40,7 @@ func main() {
 	//  - Attach ENV variables to context
 	// 	- Get IP from API
 	// 	- Provide RPC Client
-	api.Use(data.Middleware(db))
+	api.Use(data.Middleware())
 	{
 		api.GET("/info", handler.GetNodeInfo)
 	}

@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/dustinengle/bwk-dash/data"
-	"github.com/dustinengle/bwk-dash/handler"
+	"github.com/dustinengle/bwk-dash/model"
 	"github.com/dustinengle/bwk-dash/rpc"
 	"github.com/dustinengle/bwk-dash/sys"
 
@@ -21,17 +21,16 @@ var (
 // getData will return an info response object
 // with the required data to be saved into the
 // database for use by API.
-func getData() (res *handler.InfoResponse, err error) {
-	var info *rpc.GetInfo
-
+func getData() (res *model.InfoResponse, err error) {
 	// Get rpc information.
+	var info *rpc.GetInfo
 	info, err = node.GetInfo()
 	if err != nil {
 		return
 	}
 
 	// Setup the response object.
-	res = new(handler.InfoResponse)
+	res = new(model.InfoResponse)
 	res.Blocks = info.Result.Blocks
 	res.Blocks = info.Result.Blocks
 	res.Connections = info.Result.Connections
@@ -89,6 +88,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Println("Database is setup!")
 
 	// Setup rpc connection to rpc.
 	node, err = rpc.NewRPC()
@@ -97,7 +97,7 @@ func main() {
 	}
 
 	// Get information from rpc, apis, etc.
-	var info *handler.InfoResponse
+	var info *model.InfoResponse
 	info, err = getData()
 	if err != nil {
 		log.Fatal(err)
