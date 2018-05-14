@@ -45,6 +45,12 @@
   version = "v0.0.3"
 
 [[projects]]
+  name = "github.com/mattn/go-sqlite3"
+  packages = ["."]
+  revision = "6c771bb9887719704b210e87e934f08be014bdb1"
+  version = "v1.6.0"
+
+[[projects]]
   branch = "master"
   name = "github.com/pbnjay/memory"
   packages = ["."]
@@ -77,6 +83,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "de1079699c2c5767aa5ab38d5a5a6ba6baeb92014c18c8ec66b1fc7f54298f85"
+  inputs-digest = "2f41a1dfad30366931078e3d006cd45015fd3689c90beb36bedf04e72ba5e4f2"
   solver-name = "gps-cdcl"
   solver-version = 1
