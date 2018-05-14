@@ -1,21 +1,26 @@
 package data
 
 import (
-	"database/sql"
+	"os"
 
 	"github.com/gin-gonic/gin"
-
-	_ "github.com/mattn/go-sqlite3"
 )
 
-// Middleware will attach a database connection to
-// the request for use in the handler.
-func Middleware(db *sql.DB) gin.HandlerFunc {
+// Middleware will attach a database connection to the
+// the request for use by the handler.
+func Middleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// Add to context for use in handler.
-		c.Set("db", db)
+		// Setup DB connection.
+		db, err := NewSQL(os.ExpandEnv(os.Getenv("DASH_DB")))
+		if err != nil {
+			c.Error(err)
+			return
+		}
 
-		// Go to next middleware or route.
+		// Close database connection.
+		defer db.Close()
+
+		c.Set("db", db)
 		c.Next()
 	}
 }
