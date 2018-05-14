@@ -1,12 +1,14 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"os"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
+	"github.com/dustinengle/bwk-dash/data"
 	"github.com/dustinengle/bwk-dash/handler"
 	"github.com/dustinengle/bwk-dash/rpc"
 	"github.com/dustinengle/bwk-dash/sys"
@@ -15,6 +17,14 @@ import (
 )
 
 func main() {
+	// Setup database connection.
+	db, err := data.NewSQL(os.ExpandEnv(os.Getenv("DASH_DB")))
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	// Setup gin framework.
 	r := gin.Default()
 	webdir := os.ExpandEnv(os.Getenv("DASH_WEBSITE"))
 
@@ -44,6 +54,7 @@ func main() {
 		sys.EnvMiddleware(),
 		sys.NetMiddleware(),
 		rpc.Middleware(),
+		data.Middleware(db),
 	)
 	{
 		api.GET("/info", handler.GetNodeInfo)
