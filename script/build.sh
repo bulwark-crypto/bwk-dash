@@ -1,5 +1,10 @@
 #!/bin/bash
 
+sudo apt-get install -y libc6-armel-cross libc6-dev-armel-cross
+sudo apt-get install -y binutils-arm-linux-gnueabi
+sudo apt-get install -y libncurses5-dev
+sudo apt-get install -y gcc-arm-linux-gnueabi
+
 rm -fR bin
 mkdir bin
 
