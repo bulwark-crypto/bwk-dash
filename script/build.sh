@@ -1,6 +1,8 @@
 #!/bin/bash
 
 echo "Configuring system..."
+sudo apt-get update -y
+sudo apt-get install -y gcc vim git
 sudo apt-get install -y libc6-armel-cross libc6-dev-armel-cross
 sudo apt-get install -y binutils-arm-linux-gnueabi
 sudo apt-get install -y libncurses5-dev
