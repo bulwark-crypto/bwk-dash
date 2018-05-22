@@ -7,7 +7,7 @@ BOOTSTRAPURL="https://github.com/bulwark-crypto/Bulwark/releases/download/1.2.4/
 BOOTSTRAPARCHIVE="bootstrap.dat.zip"
 BWKVERSION="1.2.4.0"
 # BWK-Dash variables.
-DASH_BIN_TAR="bwk-dash-1.0.0-linux-arm.tar.gz"
+DASH_BIN_TAR="bwk-dash-1.0.0-linux-amd64.tar.gz"
 DASH_HTML_TAR="bwk-dash-1.0.0-html.tar.gz"
 DASH_PORT="8080"
 DASH_VER="v1.0.0-rc1"
