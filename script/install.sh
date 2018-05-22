@@ -66,25 +66,15 @@ RestartSec=35
 WantedBy=multi-user.target
 EOL
 sleep 1
-# Install golang.
-sudo wget https://dl.google.com/go/go1.10.2.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.10.2.linux-amd64.tar.gz
-sudo rm go1.10.2.linux-amd64.tar.gz
-# Configure golang.
-sudo echo "PATH=/usr/local/go/bin:$PATH" >> /etc/profile
-source /etc/profile
-mkdir -p $HOME/go/src
-echo "GOPATH=$HOME/go" >> $HOME/.profile
-source $HOME/.profile
-# Build the dashboard binaries.
-go get github.com/dustinengle/bwk-dash
-go build -o bwk-cron $GOPATH/src/github.com/dustinengle/bwk-dash/cmd/bwk-cron/*.go
-go build -o bwk-dash $GOPATH/src/github.com/dustinengle/bwk-dash/cmd/bwk-dash/*.go
-sudo mv bwk-cron /usr/local/bin/bwk-cron
-sudo mv bwk-dash /usr/local/bin/bwk-dash
+# Get binaries and install.
+wget https://github.com/dustinengle/bwk-dash/releases/download/v1.0.0-rc1/bwk-dash-1.0.0-linux-amd64.tar.gz
+sudo tar -zxf bwk-dash-1.0.0-linux-amd64.tar.gz -C /usr/local/bin
+rm -f bwk-dash-1.0.0-linux-amd64.tar.gz
 # Copy the html files to the dash folder and create.
-mkdir -p /home/bulwark/dash
-cp -R $GOPATH/src/github.com/dustinengle/bwk-dash/client/build/* /home/bulwark/dash/
+wget https://github.com/dustinengle/bwk-dash/releases/download/v1.0.0-rc1/bwk-dash-1.0.0-html.tar.gz
+sudo mkdir -p /home/bulwark/dash
+sudo tar -zxf bwk-dash-1.0.0-html.tar.gz -C /home/bulwark/dash
+rm -f bwk-dash-1.0.0-html.tar.gz
 # Create .env file for dashboard api and cron.
 cat > /home/bulwark/dash/.env << EOL
 DASH_DONATION_ADDRESS=TESTADDRESSHERE

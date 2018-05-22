@@ -10,4 +10,4 @@ cd ../linux-amd64
 tar -zcf ../../build/bwk-dash-1.0.0-linux-amd64.tar.gz bwk-cron bwk-dash
 
 cd ../../client/build
-tar -zcf ../../build/bwk-dash-html.tar.gz *
+tar -zcf ../../build/bwk-dash-1.0.0-html.tar.gz *
