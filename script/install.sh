@@ -94,14 +94,34 @@ EOL
 sleep 1
 # Cleanup/enforce ownership.
 sudo chown -R bulwark:bulwark /home/bulwark/dash
-# Setup cron job for bwk-cron.
-sudo crontab -u bulwark -l > mycron
-echo '* * * * * cd /home/bulwark/dash && /usr/local/bin/bwk-cron' >> mycron
-sudo crontab -u bulwark mycron
+# Setup timer and service for bwk-cron.
+sudo cat > /etc/systemd/system/bwk-cron.service << EOL
+[Unit]
+Description=Bulwark Home Node Dashboard - Cron
+After=network.target
+[Service]
+User=bulwark
+Group=bulwark
+WorkingDirectory=/home/bulwark/dash
+ExecStart=/usr/local/bin/bwk-cron
+Restart=always
+TimeoutSec=10
+RestartSec=35
+EOL
 sleep 1
-sudo rm -f mycron
-# Enable dashboard service.
-sudo systemctl enable bwk-dash
+sudo cat > /etc/systemd/system/bwk-cron.timer << EOL
+[Unit]
+Description=Bulwark Home Node Dashboard - Cron
+[Timer]
+OnBootSec=35
+OnUnitActiveSec=60 
+[Install]
+WantedBy=timers.target
+EOL
+sleep 1
+# Enable service and timer.
+sudo systemctl enable bwk-cron.timer
+sudo systemctl enable bwk-dash.service
 #BWK-Dash Setup - END
 
 #Bulwark Node - START
