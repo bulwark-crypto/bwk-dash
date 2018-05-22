@@ -55,17 +55,16 @@ sudo chown -R bulwark:bulwark /home/bulwark/go
 sleep 1
 # put into global /etc/profile
 export PATH=$PATH:/usr/local/go/bin
-sudo su -c "echo 'PATH=/usr/local/go/bin:$PATH' >> /etc/profile"
+sudo echo "PATH=/usr/local/go/bin:$PATH" >> /etc/profile
 source /etc/profile
 sleep 1
 # put into user's ~/.profile
 export GOPATH=/home/bulwark/go
 export PATH=$PATH:$GOPATH/bin
-echo "" >> /home/bulwark/.profile
-echo "# Bulwark settings" >> /home/bulwark/.profile
-echo "GOPATH=/home/bulwark/go" >> /home/bulwark/.profile
-echo "PATH=$PATH:$GOPATH/bin" >> /home/bulwark/.profile
-source /home/bulwark/.profile
+sudo echo "" >> /home/bulwark/.profile
+sudo echo "# Bulwark settings" >> /home/bulwark/.profile
+sudo echo "GOPATH=/home/bulwark/go" >> /home/bulwark/.profile
+sudo echo "PATH=$PATH:$GOPATH/bin" >> /home/bulwark/.profile
 sleep 1
 #Golang Setup - END
 
@@ -99,8 +98,8 @@ DASH_DONATION_ADDRESS=TESTADDRESSHERE
 DASH_PORT=8080
 DASH_RPC_ADDR=localhost
 DASH_RPC_PORT=52541
-DASH_RPC_USER=${$RPCUSER}
-DASH_RPC_PASS=${$RPCPASSWORD}
+DASH_RPC_USER=${RPCUSER}
+DASH_RPC_PASS=${RPCPASSWORD}
 DASH_WEBSITE=/home/bulwark/dash
 DASH_DB=/home/bulwark/dash/bwk-dash.db
 EOL
@@ -122,19 +121,14 @@ sudo systemctl enable bwk-dash
 #Bulwark Node - START
 sudo wget $TARBALLURL
 sleep 2
-sudo tar -xzf $TARBALLNAME
-sudo mv bin bulwark
+sudo tar -xzf $TARBALLNAME -C /usr/local
 sudo rm $TARBALLNAME
-cd bulwark
-sudo cp bulwark* /usr/local/bin
 sleep 3
 cd ~
-sudo mv /home/pi/bulwark /home/bulwark/
 sudo chown -R bulwark:bulwark /home/bulwark/bulwark/
 sleep 1
 sudo systemctl enable bulwarkd.service
 sleep 1
-sudo systemctl start bulwarkd.service
-sudo echo "Starting up bulwarkd, please wait"
+#Bulwark Node - END
 
 sudo reboot
