@@ -42,7 +42,7 @@ sudo chown -R bulwark:bulwark /home/bulwark/.bulwark
 RPCUSER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1)
 RPCPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 sudo cat > /home/bulwark/.bulwark/bulwark.conf << EOL
-rpcusername=${RPCUSER}
+rpcuser=${RPCUSER}
 rpcpassword=${RPCPASSWORD}
 daemon=1
 EOL
