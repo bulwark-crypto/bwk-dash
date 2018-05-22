@@ -1,15 +1,11 @@
 #!/bin/bash
 
-echo "Moving to source folder..."
-cd $GOPATH/src/github.com/dustinengle/bwk-dash
+echo "Building:"
 
-echo "Buidling BWK-Dash..."
-go build -o $GOPATH/bin/bwk-dash cmd/bwk-dash/*.go
+GOOS=linux GOARCH=arm go build -o bin/bwk-cron cmd/bwk-cron/*.go
+GOOS=linux GOARCH=arm go build -o bin/bwk-dash cmd/bwk-dash/*.go
+echo "- Linux ARM done!"
 
-echo "Buidling BWK-Clean..."
-go build -o $GOPATH/bin/bwk-clean cmd/bwk-clean/*.go
-
-echo "Buidling BWK-Cron..."
-go build -o $GOPATH/bin/bwk-cron cmd/bwk-cron/*.go
-
-echo "Finished!"
+GOOS=linux GOARCH=amd64 go build -o bin/bwk-cron cmd/bwk-cron/*.go
+GOOS=linux GOARCH=amd64 go build -o bin/bwk-dash cmd/bwk-dash/*.go
+echo "- Linux AMD64 done!"
