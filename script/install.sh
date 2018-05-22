@@ -8,8 +8,8 @@ BOOTSTRAPARCHIVE="bootstrap.dat.zip"
 BWKVERSION="1.2.4.0"
 #Variables - END
 
+#TODO: Combine back with SHN install script.
 sudo apt-get install -y gcc unzip
-
 sudo adduser bulwark
 
 #Bulwark Service - START

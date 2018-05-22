@@ -45,7 +45,4 @@ The following scruture is being used:
 
 
 ## TODO
-- Finish cron binary to query at intervals and store in sqlite3 database.
-- Change API handler to query database for information.
-  - Maybe setup cache at equal interval to cron binary.
-- Add middleware for database connection.
+- Change bandwidth usage to graph over `x` time.
