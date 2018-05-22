@@ -101,7 +101,7 @@ sleep 1
 sudo chown -R bulwark:bulwark /home/bulwark/dash
 # Setup cron job for bwk-cron.
 sudo crontab -u bulwark -l > mycron
-echo '*/5 * * * * cd /home/bulwark/dash && /usr/local/bin/bwk-cron' >> mycron
+echo '* * * * * cd /home/bulwark/dash && /usr/local/bin/bwk-cron' >> mycron
 sudo crontab -u bulwark mycron
 sleep 1
 sudo rm -f mycron
