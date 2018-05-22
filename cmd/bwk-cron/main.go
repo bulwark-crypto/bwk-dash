@@ -26,6 +26,7 @@ func getData() (res *model.InfoResponse, err error) {
 	var info *rpc.GetInfo
 	info, err = node.GetInfo()
 	if err != nil {
+		fmt.Println("getData() => GetInfo():")
 		return
 	}
 
@@ -79,6 +80,7 @@ func main() {
 	// Setup database connection.
 	db, err = data.NewSQL(os.ExpandEnv(os.Getenv("DASH_DB")))
 	if err != nil {
+		fmt.Println("DB Connection:")
 		log.Fatal(err)
 	}
 	defer db.Close()
@@ -86,6 +88,7 @@ func main() {
 	// Setup the table structure if not found.
 	err = db.Setup()
 	if err != nil {
+		fmt.Println("DB Table Setup:")
 		log.Fatal(err)
 	}
 	fmt.Println("Database is setup!")
@@ -93,6 +96,7 @@ func main() {
 	// Setup rpc connection to rpc.
 	node, err = rpc.NewRPC()
 	if err != nil {
+		fmt.Println("RPC Connection:")
 		log.Fatal(err)
 	}
 
@@ -100,12 +104,14 @@ func main() {
 	var info *model.InfoResponse
 	info, err = getData()
 	if err != nil {
+		fmt.Println("GetData():")
 		log.Fatal(err)
 	}
 
 	// Store in database.
 	err = db.Save(info)
 	if err != nil {
+		fmt.Println("DB Insert:")
 		log.Fatal(err)
 	}
 
