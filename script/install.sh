@@ -8,7 +8,7 @@ BOOTSTRAPARCHIVE="bootstrap.dat.zip"
 BWKVERSION="1.2.4.0"
 #Variables - END
 
-sudo apt-get install -y gcc
+sudo apt-get install -y gcc unzip
 
 sudo adduser bulwark
 
