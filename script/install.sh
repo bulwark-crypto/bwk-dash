@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #Variables - START
-CHARS="/-\|"
 TARBALLURL="https://github.com/bulwark-crypto/Bulwark/releases/download/1.2.4/bulwark-1.2.4.0-linux64.tar.gz"
 TARBALLNAME="bulwark-1.2.4.0-linux64.tar.gz"
 BOOTSTRAPURL="https://github.com/bulwark-crypto/Bulwark/releases/download/1.2.4/bootstrap.dat.zip"
@@ -9,40 +8,7 @@ BOOTSTRAPARCHIVE="bootstrap.dat.zip"
 BWKVERSION="1.2.4.0"
 #Variables - END
 
-if [ "$(id -u)" != "0" ]; then
-    echo "Sorry, this script needs to be run as root. Do \"sudo bash run.sh\""
-    exit 1
-fi
-
-#System Setup - START
-sudo echo "Preparing installation..."
-sudo apt-get -y update
-sleep 2
-sudo apt-get -y upgrade
-sleep 2
-sudo apt-get -y dist-upgrade
-sleep 2
-sudo apt-get update -y
-sleep 2
-sudo apt-get install htop -y
-sleep 3
-sudo apt-get install nano -y
-sleep 3
-sudo apt-get install ufw -y
-sleep 3
-sudo apt-get install fail2ban -y
-sleep 3
-sudo apt-get install git -y
-sleep 3
-sudo apt install unzip -y
-sleep 3
-sudo wget --directory-prefix=/etc/fail2ban/ https://raw.githubusercontent.com/whywefight/Bulwark-MN-Install/master/jail.local
-#System Setup - END
-
-#Bulwark User Setup - START
-sudo adduser --gecos "" bulwark --disabled-password > /dev/null
-sleep 1
-#Bulwark User Setup - END
+sudo adduser bulwark
 
 #Bulwark Service - START
 sudo cat > /etc/systemd/system/bulwarkd.service << EOL
@@ -156,20 +122,6 @@ sudo systemctl start bwk-dash
 sudo systemctl enable bwk-dash
 #BWK-Dash Setup - END
 
-#Firewall Setup - START
-sudo ufw allow 8080
-sleep 2
-sudo ufw allow 9050
-sleep 2
-sudo ufw allow 52543
-sleep 2
-sudo ufw allow from 127.0.0.1 to 127.0.0.1 port 52541
-sleep 2
-sudo ufw allow from `ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/' | awk -F"." '{print $1"."$2"."$3".0/24"}'` to any port 22
-yes | sudo ufw enable
-sleep 2
-#Firewall Setup - END
-
 #Bulwark Node - START
 sudo wget $TARBALLURL
 sleep 2
@@ -187,47 +139,5 @@ sudo systemctl enable bulwarkd.service
 sleep 1
 sudo systemctl start bulwarkd.service
 sudo echo "Starting up bulwarkd, please wait"
-
-# Wait for bulwark to finish starting to prevent errors in line 158
-until sudo su -c "bulwark-cli getinfo 2>/dev/null | grep 'balance' > /dev/null" bulwark; do
-  for (( i=0; i<${#CHARS}; i++ )); do
-    sleep 2
-    echo -en "${CHARS:$i:1}" "\r"
-  done
-done
-
-sudo echo ""
-sudo echo "I will open the getinfo screen for you in watch mode now, close it with CTRL + C once we are fully synced."
-sleep 20
-watch bulwark-cli -datadir=/home/bulwark/.bulwark -conf=/home/bulwark/.bulwark/bulwark.conf getinfo
-sudo echo "Daemon Status:"
-sudo systemctl status bulwarkd.service | sed -n -e 's/^.*Active: //p'
-sudo echo ""
-sudo echo "Show Active Peers:"
-bulwark-cli -datadir=/home/bulwark/.bulwark -conf=/home/bulwark/.bulwark/bulwark.conf getpeerinfo | sed -n -e 's/^.*"addr" : //p'
-sudo echo ""
-sudo echo "Firewall Rules:"
-sudo ufw status
-sudo echo ""
-sudo echo "Fail2Ban:"
-sudo systemctl status fail2ban.service | sed -n -e 's/^.*Active: //p'
-sudo echo ""
-sudo echo "Important Other Infos:"
-sudo echo ""
-sudo echo "Bulwark bin dir: /home/bulwark/bulwark"
-sudo echo "bulwark.conf: /home/bulwark/.bulwark/bulwark.conf"
-sudo echo "Start daemon: sudo systemctl start bulwarkd.service"
-sudo echo "Restart daemon: sudo systemctl restart bulwarkd.service"
-sudo echo "Status of daemon: sudo systemctl status bulwarkd.service"
-sudo echo "Stop daemon: sudo systemctl stop bulwarkd.service"
-sudo echo "Check bulwarkd status: bulwark-cli getinfo"
-sudo echo "Check masternode status: bulwark-cli masternode status"
-sleep 5
-sudo echo ""
-sudo echo "Adding bulwark-cli shortcut to ~/.profile"
-echo "alias bulwark-cli='sudo bulwark-cli -config=/home/bulwark/.bulwark/bulwark.conf -datadir=/home/bulwark/.bulwark'" >> /home/pi/.profile
-sudo echo "Installation finished."
-read -p "Press Enter to continue, the system will reboot."
-#Bulwark Node - END
 
 sudo reboot
