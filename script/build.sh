@@ -20,7 +20,7 @@ sudo echo "PATH=/usr/local/go/bin:$GOPATH/bin:$PATH" >> /etc/profile
 source /etc/profile
 
 echo "Getting source code..."
-go get github.com/dustinengle/bwk-dash
+go get -u github.com/dustinengle/bwk-dash
 cd $GOPATH/src/github.com/dustinengle/bwk-dash
 
 echo "Removing old builds..."
