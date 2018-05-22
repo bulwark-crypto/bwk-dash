@@ -63,16 +63,17 @@ export GOPATH=/home/bulwark/go
 export PATH=$PATH:$GOPATH/bin
 echo "" >> /home/bulwark/.profile
 echo "# Bulwark settings" >> /home/bulwark/.profile
-sudo sh -c "echo 'GOPATH=/home/bulwark/go' >> /home/bulwark/.profile"
-sudo sh -c "echo 'PATH=$PATH:$GOPATH/bin' >> /home/bulwark/.profile"
-sudo sh -c "source /home/bulwark/.profile" bulwark
+echo "GOPATH=/home/bulwark/go" >> /home/bulwark/.profile
+echo "PATH=$PATH:$GOPATH/bin" >> /home/bulwark/.profile
+source /home/bulwark/.profile
 sleep 1
 #Golang Setup - END
 
 #BWK-Dash Setup - START
-sudo su -c "go get -u github.com/dustinengle/bwk-dash" bulwark
-sudo su -c "GOOS=linux GOARCH=amd64 go build -o /home/bulwark/go/bin/bwk-cron /home/bulwark/go/src/github.com/dustinengle/bwk-dash/cmd/bwk-cron/*.go" bulwark
-sudo su -c "GOOS=linux GOARCH=amd64 go build -o /home/bulwark/go/bin/bwk-dash /home/bulwark/go/src/github.com/dustinengle/bwk-dash/cmd/bwk-dash/*.go" bulwark
+sudo mkdir -p /home/bulwark/go/src/github.com/dustinengle
+sudo git clone https://github.com/dustinengle/bwk-dash /home/bulwark/go/src/github.com/dustinengle/bwk-dash
+sudo GOOS=linux GOARCH=amd64 go build -o /usr/local/bin/bwk-cron /home/bulwark/go/src/github.com/dustinengle/bwk-dash/cmd/bwk-cron/*.go
+sudo GOOS=linux GOARCH=amd64 go build -o /usr/local/bin/bwk-dash /home/bulwark/go/src/github.com/dustinengle/bwk-dash/cmd/bwk-dash/*.go
 # Setup systemd service and start.
 sudo cat > /etc/systemd/system/bwk-dash.service << EOL
 [Unit]
@@ -82,7 +83,7 @@ After=network.target
 User=bulwark
 Group=bulwark
 WorkingDirectory=/home/bulwark/dash
-ExecStart=/home/bulwark/go/bin/bwk-dash
+ExecStart=/usr/local/bin/bwk-dash
 Restart=always
 TimeoutSec=5
 RestartSec=5
@@ -92,8 +93,8 @@ EOL
 sleep 1
 # Create .env file.
 # Uses same RPCUSER and RPCPASSWORD as above configuration.
-mkdir -p /home/bulwark/dash
-cat > /home/bulwark/dash/.env << EOL
+sudo mkdir -p /home/bulwark/dash
+sudo cat > /home/bulwark/dash/.env << EOL
 DASH_DONATION_ADDRESS=TESTADDRESSHERE
 DASH_PORT=8080
 DASH_RPC_ADDR=localhost
@@ -105,20 +106,16 @@ DASH_DB=/home/bulwark/dash/bwk-dash.db
 EOL
 sleep 1
 # Copy the html files to the dash folder.
-sudo su -c "cp -R /home/bulwark/go/src/github.com/dustinengle/bwk-dash/client/build/* /home/bulwark/dash/" bulwark
+sudo cp -R /home/bulwark/go/src/github.com/dustinengle/bwk-dash/client/build/* /home/bulwark/dash/
 # Cleanup/enforce ownership.
 sudo chown -R bulwark:bulwark /home/bulwark/dash
-# Run cron job for first time manually.
-sudo su -c "bwk-cron" bulwark
-sleep 1
 # Setup cron job for bwk-cron.
-crontab -u bulwark -l > mycron
-echo '*/5 * * * * cd /home/bulwark/dash && bwk-cron' >> mycron
-crontab -u bulwark mycron
+sudo crontab -u bulwark -l > mycron
+echo '*/5 * * * * cd /home/bulwark/dash && /usr/local/bin/bwk-cron' >> mycron
+sudo crontab -u bulwark mycron
 sleep 1
-rm -f mycron
-# Start and enable dashboard service.
-sudo systemctl start bwk-dash
+sudo rm -f mycron
+# Enable dashboard service.
 sudo systemctl enable bwk-dash
 #BWK-Dash Setup - END
 
