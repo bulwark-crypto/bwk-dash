@@ -8,6 +8,8 @@ BOOTSTRAPARCHIVE="bootstrap.dat.zip"
 BWKVERSION="1.2.4.0"
 #Variables - END
 
+sudo apt-get install -y gcc
+
 sudo adduser bulwark
 
 #Bulwark Service - START
@@ -65,14 +67,11 @@ sudo echo "" >> /home/bulwark/.profile
 sudo echo "# Bulwark settings" >> /home/bulwark/.profile
 sudo echo "GOPATH=/home/bulwark/go" >> /home/bulwark/.profile
 sudo echo "PATH=$PATH:$GOPATH/bin" >> /home/bulwark/.profile
+sudo chown bulwark:bulwark /home/bulwark/.profile
 sleep 1
 #Golang Setup - END
 
 #BWK-Dash Setup - START
-sudo mkdir -p /home/bulwark/go/src/github.com/dustinengle
-sudo git clone https://github.com/dustinengle/bwk-dash /home/bulwark/go/src/github.com/dustinengle/bwk-dash
-sudo GOOS=linux GOARCH=amd64 go build -o /usr/local/bin/bwk-cron /home/bulwark/go/src/github.com/dustinengle/bwk-dash/cmd/bwk-cron/*.go
-sudo GOOS=linux GOARCH=amd64 go build -o /usr/local/bin/bwk-dash /home/bulwark/go/src/github.com/dustinengle/bwk-dash/cmd/bwk-dash/*.go
 # Setup systemd service and start.
 sudo cat > /etc/systemd/system/bwk-dash.service << EOL
 [Unit]
@@ -84,15 +83,24 @@ Group=bulwark
 WorkingDirectory=/home/bulwark/dash
 ExecStart=/usr/local/bin/bwk-dash
 Restart=always
-TimeoutSec=5
-RestartSec=5
+TimeoutSec=10
+RestartSec=35
 [Install]
 WantedBy=multi-user.target
 EOL
 sleep 1
-# Create .env file.
-# Uses same RPCUSER and RPCPASSWORD as above configuration.
+# Build the dashboard binaries.
+mkdir -p $HOME/go/src $HOME/go/bin
+echo "GOPATH=$HOME/go" >> $HOME/.profile
+echo "PATH=$GOPATH/bin:$PATH" >> $HOME/.profile
+source $HOME/.profile
+go get github.com/dustinengle/bwk-dash
+sudo go build -o /usr/local/bin/bwk-cron /root/go/src/github.com/dustinengle/bwk-dash/cmd/bwk-cron/*.go
+sudo go build -o /usr/local/bin/bwk-dash /root/go/src/github.com/dustinengle/bwk-dash/cmd/bwk-dash/*.go
+# Copy the html files to the dash folder and create.
 sudo mkdir -p /home/bulwark/dash
+sudo cp -R $GOPATH/src/github.com/dustinengle/bwk-dash/client/build/* /home/bulwark/dash/
+# Create .env file for dashboard api and cron.
 sudo cat > /home/bulwark/dash/.env << EOL
 DASH_DONATION_ADDRESS=TESTADDRESSHERE
 DASH_PORT=8080
@@ -104,8 +112,6 @@ DASH_WEBSITE=/home/bulwark/dash
 DASH_DB=/home/bulwark/dash/bwk-dash.db
 EOL
 sleep 1
-# Copy the html files to the dash folder.
-sudo cp -R /home/bulwark/go/src/github.com/dustinengle/bwk-dash/client/build/* /home/bulwark/dash/
 # Cleanup/enforce ownership.
 sudo chown -R bulwark:bulwark /home/bulwark/dash
 # Setup cron job for bwk-cron.
