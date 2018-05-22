@@ -6,6 +6,11 @@ TARBALLNAME="bulwark-1.2.4.0-linux64.tar.gz"
 BOOTSTRAPURL="https://github.com/bulwark-crypto/Bulwark/releases/download/1.2.4/bootstrap.dat.zip"
 BOOTSTRAPARCHIVE="bootstrap.dat.zip"
 BWKVERSION="1.2.4.0"
+# BWK-Dash variables.
+DASH_BIN_TAR="bwk-dash-1.0.0-linux-arm.tar.gz"
+DASH_HTML_TAR="bwk-dash-1.0.0-html.tar.gz"
+DASH_PORT="8080"
+DASH_VER="v1.0.0-rc1"
 #Variables - END
 
 #TODO: Combine back with SHN install script.
@@ -67,18 +72,18 @@ WantedBy=multi-user.target
 EOL
 sleep 1
 # Get binaries and install.
-wget https://github.com/dustinengle/bwk-dash/releases/download/v1.0.0-rc1/bwk-dash-1.0.0-linux-amd64.tar.gz
-sudo tar -zxf bwk-dash-1.0.0-linux-amd64.tar.gz -C /usr/local/bin
-rm -f bwk-dash-1.0.0-linux-amd64.tar.gz
+wget https://github.com/dustinengle/bwk-dash/releases/download/$DASH_VER/$DASH_BIN_TAR
+sudo tar -zxf $DASH_BIN_TAR -C /usr/local/bin
+rm -f $DASH_BIN_TAR
 # Copy the html files to the dash folder and create.
-wget https://github.com/dustinengle/bwk-dash/releases/download/v1.0.0-rc1/bwk-dash-1.0.0-html.tar.gz
+wget https://github.com/dustinengle/bwk-dash/releases/download/$DASH_VER/$DASH_HTML_TAR
 sudo mkdir -p /home/bulwark/dash
-sudo tar -zxf bwk-dash-1.0.0-html.tar.gz -C /home/bulwark/dash
-rm -f bwk-dash-1.0.0-html.tar.gz
+sudo tar -zxf $DASH_HTML_TAR -C /home/bulwark/dash
+rm -f $DASH_HTML_TAR
 # Create .env file for dashboard api and cron.
 cat > /home/bulwark/dash/.env << EOL
 DASH_DONATION_ADDRESS=TESTADDRESSHERE
-DASH_PORT=8080
+DASH_PORT=${DASH_PORT}
 DASH_RPC_ADDR=localhost
 DASH_RPC_PORT=52541
 DASH_RPC_USER=${RPCUSER}
