@@ -41,7 +41,6 @@ sleep 1
 
 #Bulwark Config - START
 sudo mkdir /home/bulwark/.bulwark
-wget $BOOTSTRAPURL && unzip $BOOTSTRAPARCHIVE -d /home/bulwark/.bulwark/ && rm $BOOTSTRAPARCHIVE
 sudo touch /home/bulwark/.bulwark/bulwark.conf
 sudo chown -R bulwark:bulwark /home/bulwark/.bulwark
 RPCUSER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1)
