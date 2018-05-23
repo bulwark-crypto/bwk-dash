@@ -19,6 +19,9 @@ if [ ! -d "/usr/local/go" ]; then
     sudo echo "GOPATH=$HOME/go" >> /etc/profile
     sudo echo "PATH=/usr/local/go/bin:$GOPATH/bin:$PATH" >> /etc/profile
     source /etc/profile
+else
+    source /etc/profile
+    source $HOME/.profile
 fi
 
 echo "Getting source code..."
