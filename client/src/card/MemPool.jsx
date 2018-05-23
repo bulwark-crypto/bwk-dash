@@ -13,7 +13,7 @@ const MemPool = (props) => (
       <div><strong>Size:</strong> { breakdownBytes(props.size) }</div>,
       <div><strong>RAM:</strong> { breakdownBytes(props.max) }</div>
     ]}
-    title="Memool Information" />
+    title="Mempool Information" />
 );
 
 MemPool.propTypes = {
