@@ -24,29 +24,29 @@ class App extends React.Component {
 
     this.interval = null;
     this.state = {
-      blocks: 12345,
-      connections: 125,
+      blocks: 0,
+      connections: 0,
       country: 'United States',
-      difficulty: 100.0,
-      donationAddress: 'DONATION',
+      difficulty: 0.0,
+      donationAddress: 'BURN',
       ip: '192.168.0.1',
-      incomingData: 1000.0,
+      incomingData: 0.0,
       maxFee: 0.0,
       midFee: 0.0,
       minFee: 0.0,
       maxMemory: 0.0,
       network: 'nonet',
       networkHashPS: 0.0,
-      outgoingData: 500.0,
-      protocol: 77777,
+      outgoingData: 0.0,
+      protocol: 0,
       rank: 0,
       status: 'Offline',
       stakingStatus: 'Unknown',
-      subversion: '1.1.1.1',
-      totalData: 1500.0,
-      transactions: 3,
-      usedMemory: 340.0,
-      version: 1
+      subversion: '0.0.0.0',
+      totalData: 0.0,
+      transactions: 0,
+      usedMemory: 0.0,
+      version: 0
     };
   };
 
@@ -62,48 +62,50 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="bx--grid">
+      <div>
         <Header />
-        <article>
-          <div className="bx--row" style={{ padding: 20 }}>
-            <MemPool
-              max={ this.state.maxMemory }
-              size={ this.state.usedMemory }
-              transactions={ this.state.transactions } />
-            <NodeDetail
-              blocks={ this.state.blocks }
-              connections={ this.state.connections }
-              network={ this.state.network }
-              status={ this.state.status } />
-            <Node
-              ip={ this.state.ip }
-              protocol={ this.state.protocol }
-              subversion={ this.state.subversion }
-              version={ this.state.version } />
-            <BandwidthChart
-              incomingData={ this.state.incomingData }
-              outgoingData={ this.state.outgoingData }
-              totalData={ this.state.totalData } />
-            <Network
-              blocks={ this.state.blocks }
-              difficulty={ this.state.difficulty }
-              networkHashPS={ this.state.networkHashPS } />
-            <Bandwidth
-              incomingData={ this.state.incomingData }
-              outgoingData={ this.state.outgoingData }
-              totalData={ this.state.totalData } />
-            <Fee
-              max={ this.state.maxFee }
-              mid={ this.state.midFee }
-              min={ this.state.minFee } />
-            <Donate
-              donationAddress={ this.state.donationAddress } />
-            <Status
-              stakingStatus={ this.state.stakingStatus }
-              status={ this.state.status } />
-          </div>
-        </article>
-        <Footer />
+        <div className="bx--grid">
+          <article>
+            <div className="bx--row" style={{ padding: 20 }}>
+              <MemPool
+                max={ this.state.maxMemory }
+                size={ this.state.usedMemory }
+                transactions={ this.state.transactions } />
+              <NodeDetail
+                blocks={ this.state.blocks }
+                connections={ this.state.connections }
+                network={ this.state.network }
+                status={ this.state.status } />
+              <Node
+                ip={ this.state.ip }
+                protocol={ this.state.protocol }
+                subversion={ this.state.subversion }
+                version={ this.state.version } />
+              <BandwidthChart
+                incomingData={ this.state.incomingData }
+                outgoingData={ this.state.outgoingData }
+                totalData={ this.state.totalData } />
+              <Network
+                blocks={ this.state.blocks }
+                difficulty={ this.state.difficulty }
+                networkHashPS={ this.state.networkHashPS } />
+              <Bandwidth
+                incomingData={ this.state.incomingData }
+                outgoingData={ this.state.outgoingData }
+                totalData={ this.state.totalData } />
+              <Fee
+                max={ this.state.maxFee }
+                mid={ this.state.midFee }
+                min={ this.state.minFee } />
+              <Donate
+                donationAddress={ this.state.donationAddress } />
+              <Status
+                stakingStatus={ this.state.stakingStatus }
+                status={ this.state.status } />
+            </div>
+          </article>
+          <Footer />
+        </div>
       </div>
     );
   }
