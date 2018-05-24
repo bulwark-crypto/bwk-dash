@@ -16,7 +16,7 @@ const Header = () => (
         <div className="bx--col-sm-12 bx--col-md-6" style={{ textAlign: 'right' }}>
           <a
             className="rectangle-2"
-            href="#"
+            href="https://github.com/bulwark-crypto"
             target="_blank">
             Help
           </a>
