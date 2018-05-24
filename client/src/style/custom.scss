@@ -30,12 +30,14 @@ a, a:visited {
 }
 
 .header {
-  background: linear-gradient(135deg, $brand-01 1%, $brand-01 50%, $brand-02 80%);
+  /* background: linear-gradient(135deg, $brand-01 1%, $brand-01 50%, $brand-02 80%); */
+  background-color: $brand-01;
   min-height: 7vh;
   text-align: left;
 
   .bx--type-beta {
-    margin-top: 1.5vh;
+    font-size: 22px;
+    margin-top: 2.5vh;
   }
 
   a {
