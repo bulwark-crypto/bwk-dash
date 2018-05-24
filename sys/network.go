@@ -3,6 +3,7 @@ package sys
 import (
 	"encoding/json"
 	"net/http"
+	"os"
 )
 
 // API is the api for the ip address.
@@ -30,5 +31,14 @@ func GetIP() (ip string, err error) {
 	}
 
 	ip = resIP.IP
+	return
+}
+
+// GetTOR will return the tor onion address.
+func GetTOR() (addr string, err error) {
+	addr = os.Getenv("DASH_TOR")
+	if addr == "" {
+		addr, err = GetIP()
+	}
 	return
 }

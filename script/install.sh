@@ -89,6 +89,7 @@ DASH_RPC_USER=${RPCUSER}
 DASH_RPC_PASS=${RPCPASSWORD}
 DASH_WEBSITE=/home/bulwark/dash
 DASH_DB=/home/bulwark/dash/bwk-dash.db
+DASH_TOR=
 EOL
 sleep 1
 # Cleanup/enforce ownership.

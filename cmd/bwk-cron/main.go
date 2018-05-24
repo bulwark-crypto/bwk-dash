@@ -49,8 +49,9 @@ func getData() (res *model.InfoResponse, err error) {
 	res.UsedMemory = 0
 	res.Version = info.Result.Version
 
-	// Get the ip address for the node.
-	res.IP, err = sys.GetIP()
+	// Get the .onion address for the node or default
+	// back to getting the ip address.
+	res.IP, err = sys.GetTOR()
 	if err != nil {
 		return
 	}
