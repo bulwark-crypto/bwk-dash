@@ -55,9 +55,28 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    fetch.getInfo()
-      .then(info => this.setState({ ...info }))
-      .catch(error => console.log(error));
+    this.fetchData();
+  };
+
+  componentWillUnmount() {
+    if (this.interval) {
+      clearTimeout(this.interval);
+      this.interval = null;
+    }
+  };
+
+  fetchData = () => {
+    if (this.interval) {
+      clearTimeout(this.interval);
+    }
+
+    this.interval = setTimeout(() => {
+      fetch.getInfo()
+        .then(info => this.setState({ ...info }, () => {
+          this.fetchData();
+        }))
+        .catch(error => console.log(error));
+    }, 30 * 1000); // 30 secs
   };
 
   render() {
