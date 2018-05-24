@@ -35,7 +35,7 @@ a, a:visited {
   text-align: left;
 
   .bx--type-beta {
-    margin-top: 18px;
+    margin-top: 2.5vh;
   }
 
   a {
@@ -62,16 +62,16 @@ a, a:visited {
   }
 
   div:last-child {
+    padding-left: 10px;
     padding-right: 14px;
-    text-align: center;
   }
 }
 
 .logo {
-  padding: 1vh 1vw;
+  padding-top: 2.5vh;
 
   img {
-    height: 5vh;
+    height: 9vh;
     width: auto;
   }
 }
