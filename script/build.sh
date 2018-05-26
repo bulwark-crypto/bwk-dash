@@ -1,5 +1,10 @@
 #!/bin/bash
 
+echo "Building website..."
+cd client
+yarn run build
+cd ..
+
 echo "Configuring system..."
 sudo apt-get update -y
 sudo apt-get install -y gcc vim git
