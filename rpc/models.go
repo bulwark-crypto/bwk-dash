@@ -36,7 +36,7 @@ type GetNetTotals struct {
 	Result struct {
 		Recv float64 `json:"totalbytesrecv"`
 		Sent float64 `json:"totalbytessent"`
-		Time int     `json:"timemillis"`
+		Time int64   `json:"timemillis"`
 	} `json:"result"`
 }
 

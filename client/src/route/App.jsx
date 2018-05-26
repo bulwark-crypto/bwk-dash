@@ -55,7 +55,11 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.fetchData();
+    fetch.getInfo()
+      .then(info => this.setState({ ...info }, () => {
+        this.fetchData();
+      }))
+      .catch(error => console.log(error));
   };
 
   componentWillUnmount() {
