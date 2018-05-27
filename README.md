@@ -2,7 +2,7 @@
 
 ![Bulwark Home Node Dashboard](/client/src/img/screenshot.png?raw=true "Bulwark Home Node Dashboard")
 
-# Updating README
+# Notice: README is being updated to match the current state of the system.
 
 ## Requirements
 The follow items are required by the system:
@@ -30,7 +30,7 @@ Go to [http://localhost:8080](http://localhost:8080)
 Once the system is completed the only requirement will be to run the binary and specify the location of the website. 
 The website will be built using ```webpack``` and will be served by the api. 
 
-To build the binary and install it into the ```$GOBIN``` or ```$GOPATH/bin``` folder please run the build script ```./script/build.sh```.  Once finished test to make sure it was installed in a reachable path by running ```which bwk-dash```, you should get the absolute path of the binary back on success.
+To build the binary and install it into the ```$GOPATH/bin``` folder please run the build script ```./script/build.sh```.  Once finished test to make sure it was installed in a reachable path by running ```which bwk-dash```, you should get the absolute path of the binary back on success.
 
 
 ## Structure
