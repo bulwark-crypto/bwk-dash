@@ -12,6 +12,8 @@ The follow items are required by the system:
 Automatically install the latest production release of the bwk-dash system.
 
 ### Install
+_Under active development_
+
 To install the system please run `wget https://raw.githubusercontent.com/bulwark-crypto/bwk-dash/master/script/install.sh && sudo bash install.sh`.
 
 
