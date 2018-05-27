@@ -23,7 +23,7 @@ const CoinDefaultPort int = 52541 // Bulwark
 const CoinDefaultProto string = "http"
 
 //RPCTimeOut default timeout(second)
-const RPCTimeOut = 5
+const RPCTimeOut = 10
 
 //Coin RPC struct
 type Coin struct {
