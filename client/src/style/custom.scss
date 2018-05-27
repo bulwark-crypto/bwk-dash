@@ -91,6 +91,10 @@ a, a:visited {
       width: 100%;
     }
 
+    &--link, &--name {
+      width: 100%;
+    }
+
     &--name {
       overflow-x: inherit;
     }
