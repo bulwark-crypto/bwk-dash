@@ -10,7 +10,7 @@ BWKVERSION="1.2.4.0"
 DASH_BIN_TAR="bwk-dash-1.0.0-linux-amd64.tar.gz"
 DASH_HTML_TAR="bwk-dash-1.0.0-html.tar.gz"
 DASH_PORT="8080"
-DASH_VER="v1.0.0-rc1"
+DASH_VER="v1.0.0"
 #Variables - END
 
 #TODO: Combine back with SHN install script.
