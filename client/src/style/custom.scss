@@ -32,12 +32,12 @@ a, a:visited {
 .header {
   /* background: linear-gradient(135deg, $brand-01 1%, $brand-01 50%, $brand-02 80%); */
   background-color: $brand-01;
-  min-height: 7vh;
+  /* min-height: 7vh; */
   text-align: left;
 
   .bx--type-beta {
     font-size: 22px;
-    margin-top: 2.5vh;
+    margin-top: 1vh;
   }
 
   a {
@@ -70,16 +70,16 @@ a, a:visited {
 }
 
 .logo {
-  padding-top: 1.5vh;
+  padding-top: 0.5vh;
 
   img {
-    height: 9vh;
+    height: 4vh;
     width: auto;
   }
 }
 
 /* Changes to Carbon */
-.bx{
+.bx {
   &--about__icon {
     min-height: 50px;
     min-width: 50px;
@@ -88,6 +88,7 @@ a, a:visited {
   &--about__title{
     &--additional-info {
       display: block;
+      width: 100%;
     }
 
     &--name {
@@ -96,7 +97,7 @@ a, a:visited {
   }
 
   &--card {
-    height: 19rem;
+    height: 21rem;
     margin-top: 10px;
     width: inherit;
   }
