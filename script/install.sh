@@ -71,11 +71,11 @@ WantedBy=multi-user.target
 EOL
 sleep 1
 # Get binaries and install.
-wget https://github.com/dustinengle/bwk-dash/releases/download/$DASH_VER/$DASH_BIN_TAR
+wget https://github.com/bulwark-crypto/bwk-dash/releases/download/$DASH_VER/$DASH_BIN_TAR
 sudo tar -zxf $DASH_BIN_TAR -C /usr/local/bin
 rm -f $DASH_BIN_TAR
 # Copy the html files to the dash folder and create.
-wget https://github.com/dustinengle/bwk-dash/releases/download/$DASH_VER/$DASH_HTML_TAR
+wget https://github.com/bulwark-crypto/bwk-dash/releases/download/$DASH_VER/$DASH_HTML_TAR
 sudo mkdir -p /home/bulwark/dash
 sudo tar -zxf $DASH_HTML_TAR -C /home/bulwark/dash
 rm -f $DASH_HTML_TAR
@@ -114,7 +114,7 @@ sudo cat > /etc/systemd/system/bwk-cron.timer << EOL
 Description=Bulwark Home Node Dashboard - Cron
 [Timer]
 OnBootSec=35
-OnUnitActiveSec=60 
+OnUnitActiveSec=60
 [Install]
 WantedBy=timers.target
 EOL

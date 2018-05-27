@@ -5,10 +5,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/dustinengle/bwk-dash/data"
-	"github.com/dustinengle/bwk-dash/model"
-	"github.com/dustinengle/bwk-dash/rpc"
-	"github.com/dustinengle/bwk-dash/sys"
+	"github.com/bulwark-crypto/bwk-dash/data"
+	"github.com/bulwark-crypto/bwk-dash/model"
+	"github.com/bulwark-crypto/bwk-dash/rpc"
+	"github.com/bulwark-crypto/bwk-dash/sys"
 
 	_ "github.com/joho/godotenv/autoload"
 )

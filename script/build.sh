@@ -30,8 +30,8 @@ else
 fi
 
 echo "Getting source code..."
-go get -u github.com/dustinengle/bwk-dash
-cd $GOPATH/src/github.com/dustinengle/bwk-dash
+go get -u github.com/bulwark-crypto/bwk-dash
+cd $GOPATH/src/github.com/bulwark-crypto/bwk-dash
 
 echo "Removing old builds..."
 rm -fR bin

@@ -7,8 +7,8 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	"github.com/dustinengle/bwk-dash/data"
-	"github.com/dustinengle/bwk-dash/handler"
+	"github.com/bulwark-crypto/bwk-dash/data"
+	"github.com/bulwark-crypto/bwk-dash/handler"
 
 	_ "github.com/joho/godotenv/autoload"
 )

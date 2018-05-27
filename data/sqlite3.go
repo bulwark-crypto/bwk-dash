@@ -3,7 +3,7 @@ package data
 import (
 	"fmt"
 
-	"github.com/dustinengle/bwk-dash/model"
+	"github.com/bulwark-crypto/bwk-dash/model"
 	"github.com/jmoiron/sqlx"
 
 	_ "github.com/mattn/go-sqlite3"
