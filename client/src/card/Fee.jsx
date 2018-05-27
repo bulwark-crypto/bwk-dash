@@ -8,9 +8,9 @@ const Fee = (props) => (
   <Card
     icon="dollars"
     items={[
-      <div><strong>Min:</strong> { props.min }</div>,
-      <div><strong>Mid:</strong> { props.mid }</div>,
-      <div><strong>Max:</strong> { props.max }</div>
+      <div><strong>Min:</strong> { props.min < 0 ? 'N/A' : props.min }</div>,
+      <div><strong>Mid:</strong> { props.mid < 0 ? 'N/A' : props.mid }</div>,
+      <div><strong>Max:</strong> { props.max < 0 ? 'N/A' : props.max }</div>
     ]}
     title="Network Fee Summary" />
 );
