@@ -113,6 +113,7 @@ sudo cat > /etc/systemd/system/bwk-cron.timer << EOL
 [Unit]
 Description=Bulwark Home Node Dashboard - Cron
 [Timer]
+OnCalendar=*-*-* *:*:00
 OnBootSec=35
 OnUnitActiveSec=60
 [Install]
